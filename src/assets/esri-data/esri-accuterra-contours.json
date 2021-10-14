@@ -1,0 +1,172 @@
+{
+  "version": 8,
+  "name": "AccuTerra Contours",
+  "sources": {
+    "contours": {
+        "type": "vector",
+        "url": "https://maps.accuterra.com/v1/data/contours.json"
+    }
+  },
+  "sprite": "https://maps.accuterra.com/v1/styles/accuterra-outdoors/sprite",
+  "glyphs": "https://maps.accuterra.com/v1/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "contours_minor",
+      "type": "line",
+      "metadata": {},
+      "source": "contours",
+      "source-layer": "contour",
+      "filter": [
+        "!=",
+        "class",
+        1
+      ],
+      "layout": {
+        "line-cap": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(148, 128, 65, 1)",
+        "line-width": {
+          "base": 2.4,
+          "stops": [
+            [
+              10,
+              0.2
+            ],
+            [
+              12,
+              0.4
+            ],
+            [
+              16,
+              1
+            ]
+          ]
+        },
+        "line-opacity": {
+          "stops": [
+            [
+              11,
+              0.2
+            ],
+            [
+              13,
+              0.3
+            ]
+          ]
+        }
+      },
+      "minzoom": 0,
+      "maxzoom": 24
+    },
+    {
+      "id": "contours_major",
+      "type": "line",
+      "metadata": {},
+      "source": "contours",
+      "source-layer": "contour",
+      "filter": [
+        "==",
+        "class",
+        1
+      ],
+      "layout": {
+        "line-cap": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(148, 128, 65, 1)",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              11,
+              0.8
+            ],
+            [
+              20,
+              3
+            ]
+          ]
+        },
+        "line-opacity": {
+          "stops": [
+            [
+              11,
+              0.3
+            ],
+            [
+              13,
+              0.4
+            ]
+          ]
+        }
+      },
+      "maxzoom": 24,
+      "minzoom": 0
+    },
+    {
+      "id": "contours_label_major",
+      "type": "symbol",
+      "metadata": {},
+      "source": "contours",
+      "source-layer": "contour",
+      "filter": [
+        "==",
+        "class",
+        1
+      ],
+      "layout": {
+        "symbol-placement": "line",
+        "text-anchor": "center",
+        "text-field": "{elev}'",
+        "text-font": [
+          "Roboto Medium"
+        ],
+        "text-offset": [
+          0,
+          0.15
+        ],
+        "text-size": {
+          "base": 1,
+          "stops": [
+            [
+              13,
+              8
+            ],
+            [
+              15,
+              10
+            ],
+            [
+              17,
+              12
+            ]
+          ]
+        },
+        "icon-anchor": "center",
+        "visibility": "visible"
+      },
+      "minzoom": 12,
+      "paint": {
+        "text-color": "rgba(117, 103, 88, 1)",
+        "text-opacity": {
+          "stops": [
+            [
+              12,
+              0.6
+            ],
+            [
+              15,
+              1
+            ]
+          ]
+        },
+        "text-halo-color": "rgba(255, 255, 255, .5)",
+        "text-halo-width": 1
+      }
+    }
+  ],
+  "id": "accuterra-contours"
+}

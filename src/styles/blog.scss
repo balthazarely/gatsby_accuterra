@@ -1,0 +1,39 @@
+.markdown h2 {
+  @apply text-3xl text-gray-600 font-bold mt-16 mb-4;
+}
+
+.markdown h3 {
+  @apply text-2xl text-gray-600 mt-12 mb-4 font-bold;
+}
+
+.markdown h4 {
+  @apply text-gray-600 text-lg  mt-8  font-bold;
+}
+
+.markdown h5 {
+  @apply text-gray-500 mb-2  font-bold;
+}
+
+.markdown h6 {
+  @apply text-xs text-gray-600 mt-16 mb-8;
+}
+
+.markdown a {
+  @apply text-blue-600;
+}
+
+.markdown p {
+  @apply mb-4 text-gray-600;
+}
+
+.markdown blockquote {
+  @apply -ml-8 mb-8 text-gray-600;
+}
+
+.markdown ul {
+  @apply list-disc mb-8 ml-10 text-gray-600;
+}
+
+.markdown ol {
+  @apply list-decimal mb-8 text-gray-600;
+}

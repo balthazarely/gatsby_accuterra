@@ -1,0 +1,38 @@
+trigger:
+  branches:
+    include:
+      - master
+stages:
+  - stage: __default
+    jobs:
+      - job: Job
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '10.x'
+            displayName: 'Install Node.js'
+          - task: CmdLine@2
+            displayName: 'npm install and export'
+            inputs:
+              script: |
+                npm install
+                npm run build
+          - task: S3Upload@1
+            inputs:
+              regionName: 'us-west-2'
+              bucketName: 'accuterra.com'
+              sourceFolder: 'public'
+              globExpressions: |
+                **
+                !vendor/**
+              filesAcl: 'public-read'
+            displayName: 'AWS S3 - Upload Files'
+          - task: AWSCLI@1
+            inputs:
+              regionName: 'us-west-2'
+              awsCommand: 'cloudfront'
+              awsSubCommand: 'create-invalidation'
+              awsArguments: '--distribution-id E2KILOHK6Q4VJ1 --paths /*'
+            displayName: 'AWS CloudFront - Create Invalidation'
